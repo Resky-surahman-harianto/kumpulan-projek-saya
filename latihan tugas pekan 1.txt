@@ -1,0 +1,155 @@
+package spce.x;
+
+import java.util.Scanner;
+
+public class SpceX {
+    
+    public static void main(String[] args){
+        
+        Scanner input = new Scanner(System.in);
+        boolean islanjut = true;
+        while(islanjut){
+            
+        System.out.println("\n1.identitas");
+        System.out.println("2.Kalkulator");
+        System.out.println("3.Pembanding");
+        
+        System.out.print("\nmasukan pilihan anda : ");
+        String pilih = input.next();
+        
+        switch(pilih){
+        case"1":
+            System.out.println("\n1.identitas");
+            System.out.println("Nama           : " + "Resky surahman harianto");
+            System.out.println("Asal           : " + "Kendari , Sulawesi tenggara");
+            System.out.println("Umur           : " + "18 thn");
+            System.out.println("jenis kelamin  : " + "Pria");
+            System.out.println("pekerjaan      : " + "Wirasuasta");
+            System.out.println("Alasan saya mengikuti bootcamp ini adalah memperdalam bahasa pemerograman\nkarna di era teknologi yang sekarang ini tentunya progremer muda sangat di butuhkan\ndan tujuan saya setelah keluar dari bootcamp adalah membangun perusahaan starup dan mengalahkan meta");
+            break;
+        case"2":
+            System.out.println("\n2.Kalkulator");
+            
+            int awal = 0;
+            try{
+            System.out.print(": ");
+            awal = input.nextInt();
+            }catch(Exception e){
+                System.err.println("Maaf input tidak di kenali");
+            }
+            
+            System.out.print(": ");
+            char oprator = input.next().charAt(0);
+            
+            int akhir = 0;
+            try{
+            System.out.print(": ");
+            akhir = input.nextInt();
+            }catch(Exception e){
+                System.err.println("Maaf input tidak di kenali");
+            }
+            
+            switch(oprator){
+            case'+':
+                
+                int hasil = awal + akhir;
+                System.out.println(awal + " " + oprator + " " + akhir + " = " + hasil);
+//                System.out.println("Hasil : " + hasil);
+               break; 
+            case'-':
+                hasil = awal - akhir;
+                System.out.println(awal + " " + oprator + " " + akhir + " = " + hasil);
+               break; 
+            case'x':
+                hasil = awal * akhir;
+                System.out.println(awal + " " + oprator + " " + akhir + " = " + hasil);
+               break; 
+            case':':
+                hasil = awal /akhir;
+                System.out.println(awal + " " + oprator + " " + akhir + " = " + hasil);
+               break;
+            case'%':
+                hasil = awal % akhir;
+                System.out.println(awal + " " + oprator + " " + akhir + " = " + hasil);
+               break;
+            default:
+                System.err.println("\nMaaf input tidak di kenali");
+            }
+            
+            break;
+        case"3":
+            System.out.println("\n3.Pembanding");
+            
+            int awal2 = 0;
+            try{
+            System.out.print(": ");
+            awal2 = input.nextInt();
+            }catch(Exception e){
+                System.err.println("\nMaaf input tidak di kenali");
+            }
+            
+            System.out.print(": ");
+            String oprator2 = input.next();
+            
+            int akhir2 = 0;
+            try{
+            System.out.print(": ");
+            akhir2 = input.nextInt();
+            }catch(Exception e){
+                System.err.println("\nMaaf input tidak dikenali");
+            }
+            
+            switch(oprator2){
+            case"<":
+                System.out.println("\nApakah a < b ");
+                boolean hasil = awal2 < akhir2;
+                System.out.println(awal2 + " " + oprator2 + " " + akhir2 + " = " + hasil);
+                break;
+            case">":
+                System.out.println("\nApakah a > b ");
+                hasil = awal2 > akhir2;
+                System.out.println(awal2 + " " + oprator2 + " " + akhir2 + " = " + hasil);
+                break;
+            case"=":
+                System.out.println("\nApakah a = b ");
+                hasil = awal2 == akhir2;
+                System.out.println(awal2 + " " + oprator2 + " " + akhir2 + " = " + hasil);
+                break;
+            case"!=":
+                System.out.println("\nApakah a != b ");
+                hasil = awal2 != akhir2;
+                System.out.println(awal2 + " " + oprator2 + " " + akhir2 + " = " + hasil);
+                break;
+            default:
+                System.out.println("\nMaaf input tidak dikenali");
+                break;
+            }
+            
+            break;
+        default:
+            System.err.println("\nMaaf input tidak di kenali");
+            break;
+        }
+        
+        islanjut = pengulangan("apakah anda ingin melanjudkan");
+        
+        }
+        
+    }
+    private static boolean pengulangan(String mesage){
+        
+        Scanner input = new Scanner(System.in);
+        System.out.print("\n" + mesage + "(y/n)");
+        String data = input.nextLine();
+        
+        while(!data.equalsIgnoreCase("y") && !data.equalsIgnoreCase("n")){
+            System.err.println("Maaf input tidak dikenali");
+            System.out.print("\n" + mesage + "(y/n)");
+            data = input.nextLine();
+        }
+        
+        return data.equalsIgnoreCase("y");
+        
+    }
+    
+}
