@@ -1,0 +1,268 @@
+package latihan;
+
+// player
+class player{
+String nama;
+double health;
+int level;
+
+Tunggangan tunggangan;
+Senjata senjata;
+Helem helem;
+Armor armor;
+
+
+player(String nama , double health){
+this.nama = nama;
+this.health = health;
+}
+
+void attak(player opponen){
+    double senjata = this.senjata.attak;
+    System.out.println("\n" + this.nama + " Menyerang " + opponen.nama);
+    opponen.defance(senjata);
+}
+
+void defance(double senjata){
+    double armor = this.helem.defance;
+    double demage;
+    if (armor < senjata) {
+        demage = senjata - armor;
+    }else{
+        demage = 0;
+    }
+    this.health -= demage;
+    System.out.println(this.nama + " gets demage " + demage);
+}
+
+void attakkuda(Tunggangan opponen){
+    double panah = this.senjata.attak;
+    System.out.println(this.nama + " Menyerang " + opponen.nama);
+    opponen.defancekuda(panah);
+    
+}
+
+
+
+
+void equiptunggangan(Tunggangan tunggangan){
+this.tunggangan = tunggangan;
+}
+
+void equipsenjata(Senjata senjata){
+this.senjata = senjata;
+}
+
+void equiphelem(Helem helem){
+this.helem = helem;
+}
+
+void equiparmor(Armor armor){
+this.armor = armor;
+}
+
+//Tunggangan tunggangan;
+//Senjata senjata;
+//Helem helem;
+//Armor armor;
+
+void display(){
+    System.out.println("\nPlayer : " + this.nama);
+    System.out.println("Health : " + this.health + " Hp");
+    senjata.display();
+    helem.display();
+    armor.display();
+    tunggangan.diskon();
+}
+
+
+}
+
+// tunggangan 
+class Tunggangan{
+String nama;
+double health;
+double speed;
+
+Helemkuda helemkuda;
+Armorkuda armorkuda;
+
+Tunggangan(String nama , double health , double speed){
+this.nama = nama;
+this.health = health;
+this.speed = speed;
+}
+
+void defancekuda(double senjata){
+    
+    double armor = this.armorkuda.defance;
+    double demage;
+    if (armor < senjata) {
+        demage = senjata - armor;
+    }else{
+    demage = 0;
+    }
+    this.health -= demage;
+    System.out.println(this.nama + " gets demage " + demage);
+}
+
+void equiphelemkuda(Helemkuda helemkuda){
+this.helemkuda = helemkuda;
+}
+
+void equiparmorkuda(Armorkuda armorkuda){
+this.armorkuda = armorkuda;
+}
+
+void diskon(){
+    System.out.println("Tunggangan : " + this.nama);
+    System.out.println("Health : " + this.health + " Hp");
+    System.out.println("Speed : " + this.speed + " Km");
+    helemkuda.diskon();
+    armorkuda.diskon();
+}
+
+}
+
+class Helemkuda{
+String nama;
+double defance;
+
+Helemkuda(String nama , double defance){
+this.nama = nama;
+this.defance = defance;
+}
+
+void diskon(){
+System.out.println("Helem : " + this.nama + " , Defance : " + this.defance);
+}
+
+}
+
+
+class Armorkuda{
+String nama;
+double defance;
+
+Armorkuda(String nama , double defance){
+this.nama = nama;
+this.defance = defance;
+}
+
+void diskon(){
+    System.out.println("Armor : " + this.nama + " , Defance : " + this.defance);
+}
+
+
+}
+
+
+
+
+class Senjata{
+String nama;
+double attak;
+
+Senjata(String nama , double attak){
+this.nama = nama;
+this.attak = attak;
+}
+
+void display(){
+    System.out.println("Senjata : " + this.nama + " , Attak : " + this.attak);
+}
+
+}
+
+// helem
+class Helem{
+String nama;
+double defance;
+
+Helem(String nama , double defance){
+this.nama = nama;
+this.defance = defance;
+}
+
+void display(){
+    System.out.println("Helem : " + this.nama + " , Defance : " + this.defance);
+}
+
+}
+
+// armor
+class Armor{
+String nama;
+double defance;
+
+Armor(String nama , double defance){
+this.nama = nama;
+this.defance = defance;
+}
+
+void display(){
+    System.out.println("Armor : " + this.nama + " , Defance : " + this.defance);
+}
+
+}
+
+public class Latihan {
+
+    
+    public static void main(String[] args){
+    
+       player player1  = new player("Surahman" , 100);
+       Senjata panah = new Senjata("Panah",50);
+       Helem helem = new Helem("Helem baja",50);
+       Armor bajubesi = new Armor("Baju besi",50);
+       
+       Tunggangan kuda = new Tunggangan("Kuda",70 , 88);
+       Helemkuda helembesi = new Helemkuda("Helem baja",40);
+       Armorkuda bajubaja = new Armorkuda("baju baja", 30);
+       
+       
+        player1.equipsenjata(panah);
+        player1.equiphelem(helem);
+        player1.equiparmor(bajubesi);
+        player1.equiptunggangan(kuda);
+        player1.tunggangan.equiphelemkuda(helembesi);
+        player1.tunggangan.equiparmorkuda(bajubaja);
+        player1.display();
+        
+        
+        
+        
+       player player2  = new player("jarwo" , 100);
+       Senjata panah2 = new Senjata("Panah",35);
+       Helem helem2 = new Helem("Helem baja",48);
+       Armor bajubesi2 = new Armor("Baju besi",47);
+       
+       Tunggangan kuda2 = new Tunggangan("Kuda",67,88);
+       Helemkuda helembesi2 = new Helemkuda("Helem baja",40);
+       Armorkuda bajubaja2 = new Armorkuda("baju baja", 40);
+       
+       
+        
+        player2.equipsenjata(panah2);
+        player2.equiphelem(helem2);
+        player2.equiparmor(bajubesi2);
+        player2.equiptunggangan(kuda2);
+        player2.tunggangan.equiphelemkuda(helembesi2);
+        player2.tunggangan.equiparmorkuda(bajubaja2);
+        player2.display();
+        
+        System.out.println("\nPERTEMPURAN");
+        System.out.println("\nSEASON 1");
+        player1.attak(player2);
+        player1.attakkuda(kuda2);
+        player1.display();
+        player2.display();
+        System.out.println("\nSEASON 2");
+        player2.attak(player1);
+        player2.attakkuda(kuda);
+        player1.display();
+        player2.display();
+        
+    }
+    
+}
