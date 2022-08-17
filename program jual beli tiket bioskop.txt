@@ -1,0 +1,146 @@
+package spce.x;
+
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Scanner;
+
+
+public class SpceX {
+    
+    public static void main(String[] args) throws IOException{
+        
+        Scanner input = new Scanner(System.in);
+        
+        boolean islanjud = true;
+        while(islanjud){
+            
+        System.out.println("-------------------------------------------------");
+        System.out.println("**************PESANAN TIKET BIOSKOP**************");
+        System.out.println("-------------------------------------------------");
+        
+        System.out.print("\nMasukan nama\t\t: ");
+        String nama = input.nextLine();
+        System.out.print("Masukan nomor telepon\t: ");
+        String telepon = input.next();
+        
+        System.out.println("~~~~~~Film yang akan tayang~~~~~~");
+        data();
+        
+        System.out.print("\n\nPilihan : ");
+        String pilih = input.next();
+        
+        String data = null;
+        String kode = null;
+        switch(pilih){
+            case "1":
+                data = "The founder";
+                kode = "A001";
+                break;
+            case "2":
+                data = "The sosial network";
+                kode = "A002";
+                break;
+            case "3":
+                data = "Stive jobs";
+                kode = "A003";
+                break;
+            case "4":
+                data = "The matrix";
+                kode = "A004";
+                break;
+            case "5":
+                data = "Pirates of silicon valley";
+                kode = "A005";
+                break;
+            case "6":
+                data = "War game";
+                kode = "A006";
+                break;
+            default:
+                System.err.println("Maaf input tidak di kenali2");
+                break;
+        }
+        
+            System.out.println("~~~~~~Waktu tayang~~~~~~");
+            System.out.println("1.10.00");
+            System.out.println("2.12.00");
+            System.out.println("3.14.00");
+            System.out.println("4.16.00");
+            System.out.println("5.19.00");
+            System.out.println("6.20.00");
+        
+        String jam = null;
+        System.out.print("\nWaktu tayang : ");
+        String pilih2 = input.next();
+        switch(pilih2){
+            case "1":
+                jam = "10.00";
+                break;
+            case "2":
+                jam = "12.00";
+                break;
+            case "3":
+                jam = "14.00";
+                break;
+            case "4":
+                jam = "16.00";
+                break;
+            case "5":
+                jam = "19.00";
+                break;
+            case "6":
+                jam = "20.00";
+                break;
+            default:
+                System.err.print("Maaf input tidak di kenali");
+                break;
+        }
+        
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("*************************INVOICE TIKET FILM************************");
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("Nama         : " + nama);
+            System.out.println("No telp      : " + telepon);
+            System.out.println("Judul film   : " + data);
+            System.out.println("Kode         : " + kode);
+            System.out.println("Waktu tayang : " + jam);
+            System.out.println("");
+        
+        islanjud = ulang("Apakah anda ingin Membeli lagi");
+        
+        }
+        
+    }
+    
+    private static boolean ulang(String mesage){
+    
+        Scanner input = new Scanner(System.in);
+        System.out.print("\n" + mesage + "(y/n)");
+        String data = input.next();
+        
+        while(!data.equalsIgnoreCase("y") && !data.equalsIgnoreCase("n")){
+            System.err.print("Maaf input tidak di kenali");
+            System.out.println("\n" + mesage + "(y/n)");
+            data = input.next();
+        }
+        
+        return data.equalsIgnoreCase("y");
+    }
+    
+    private static void data()throws IOException{
+    FileReader input = new FileReader("newfile.txt");
+    BufferedReader file = new BufferedReader(input);
+    
+    String data = file.readLine();
+    
+    int nomor = 0;
+    while(data != null){
+        nomor++;
+        System.out.print("\n" + nomor + "." + data);
+        data = file.readLine();
+    }
+        
+    }
+    
+}
