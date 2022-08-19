@@ -1,0 +1,220 @@
+package percobaan1;
+
+class Player1{
+String nama;
+int health;
+
+Player2 player2;
+Armor armor;
+Weapon weapon;
+
+Player1(String nama , int health){
+this.nama = nama;
+this.health = health;
+}
+
+void setPlayer2(Player2 player2){
+this.player2 = player2;
+}
+
+void setArmor(Armor armor){
+this.armor = armor;
+}
+
+void setWeapon(Weapon weapon){
+this.weapon = weapon;
+}
+
+void display(){
+    System.out.println("\nPlayer : " + this.nama);
+    System.out.println("Health : " + this.health);
+    armor.display();
+    weapon.display();
+}
+
+void attak(Player2 opponen){
+
+int senjata = this.weapon.attak;
+System.out.println(this.nama + " Menyerang " + opponen.nama + " With " + senjata);
+defance(senjata);
+
+}
+
+void defance(int senjata){
+
+    int demage;
+    int armor = this.player2.armor.defance;
+    if (armor < senjata) {
+        demage = senjata - armor;
+    }else{
+        demage = 0;
+    }
+    
+    this.player2.health -= demage;
+    System.out.println(this.nama + " gets demage " + demage);
+    
+    
+}
+
+}
+
+class Armor{
+String nama;
+int defance;
+
+Armor(String nama , int defance){
+this.nama = nama;
+this.defance = defance;
+}
+
+void display(){
+    System.out.println("Armor : " + this.nama + " , defance : " + this.defance);
+}
+
+}
+
+class Weapon{
+String nama;
+int attak;
+
+Weapon(String nama , int attak){
+this.nama = nama;
+this.attak = attak;
+}
+
+void display(){
+    System.out.println("Armor : " + this.nama + " , Attak : " + this.attak);
+}
+
+}
+
+class Player2{
+String nama;
+int health;
+
+Player1 player1;
+Armor2 armor;
+Weapon2 weapon;
+
+Player2(String nama , int health){
+this.nama = nama;
+this.health = health;
+}
+
+void display(){
+    System.out.println("\nPlayer : " + this.nama);
+    System.out.println("Health : " + this.health);
+    armor.display();
+    weapon.display();
+}
+
+void attak(Player1 opponen){
+int senjata = this.weapon.attak;
+System.out.println(this.nama + " Menyerang " + opponen.nama + " With " + senjata);    
+defance(senjata);
+}
+
+void defance(int senjata){
+    
+int armor = this.player1.armor.defance;
+int demage;
+
+    if (armor < senjata) {
+        demage = senjata - armor;
+    }else{
+        demage = 0;
+    }
+    
+    this.player1.health -= demage;
+    System.out.println(this.nama + " gets demage " + demage);
+    
+}
+
+
+void setPlayer1(Player1 player1){
+this.player1 = player1;
+}
+
+void setArmor(Armor2 armor){
+this.armor = armor;
+}
+
+void setWeapon(Weapon2 weapon){
+this.weapon = weapon;
+}
+
+}
+
+class Armor2{
+String nama;
+int defance;
+
+Armor2(String nama , int defance){
+this.nama = nama;
+this.defance = defance;
+}
+
+void display(){
+    System.out.println("Armor : " + this.nama + " , defance : " + this.defance);
+}
+
+}
+
+class Weapon2{
+String nama;
+int attak;
+
+Weapon2(String nama , int attak){
+this.nama = nama;
+this.attak = attak;
+}
+
+void display(){
+    System.out.println("Weapon : " + this.nama + " , attak : " + this.attak);
+}
+
+}
+
+
+
+public class Percobaan1 {
+
+   
+    public static void main(String[] args) {
+     
+     // pelayer 1
+     Player1 player1 = new Player1("Surahman", 100);  
+     Armor baja = new Armor("Baju baja", 15);
+     Weapon pedang = new Weapon("Pedang",30);
+     
+     player1.setArmor(baja);
+     player1.setWeapon(pedang);
+     
+     player1.display();
+     
+     // pelayer2
+     Player2 player2 = new Player2("Suparto",100); 
+     Armor2 besi = new Armor2("Besi",15);
+     Weapon2 panah = new Weapon2("Baju besi",30);
+     
+     player2.setArmor(besi);
+     player2.setWeapon(panah);
+     player2.display();
+     
+     // penyimpanan //
+     player1.setPlayer2(player2);
+     player2.setPlayer1(player1);
+     //===============//
+     
+     System.out.println("\nPERTEMPURAN");
+     System.out.println("\nSEASON 1");
+     player1.attak(player2);
+     player1.display();
+     player2.display();
+     System.out.println("\nSEASON 2");
+     player2.attak(player1);
+     player1.display();
+     player2.display();
+     
+    }
+}
