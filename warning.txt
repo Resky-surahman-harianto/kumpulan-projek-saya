@@ -1,0 +1,150 @@
+package spce.x;
+
+class Player{
+
+private String nama;
+private int baseHealth;
+private int baseAttak;
+private int level;
+private int incremenHealth;
+private int incremenAttak;
+private int totaldemage;
+
+private Armor armor;
+private Weapon weapon;
+
+public Player(String nama){
+this.nama = nama;
+this.baseHealth = 100;
+this.baseAttak = 100;
+this.level = 1;
+this.incremenAttak = 20;
+this.incremenHealth = 20;
+}
+
+public String getName(){
+return this.nama;
+}
+
+public void setArmor(Armor armor){
+this.armor = armor;
+}
+
+public void setWeapon(Weapon weapon){
+this.weapon = weapon;
+}
+
+public int health(){
+return this.maxHealth() - this.totaldemage;
+}
+
+public void display(){
+    System.out.println("\nPlayer   : " + this.nama);
+    System.out.println("Level     : " + this.level);
+    System.out.println("Health : " + this.health() + "/" + this.maxHealth());
+    System.out.println("MaxAttak  : " + this.maxAttak());
+   
+}
+
+private void levelUp(){
+this.level++;
+}
+
+public void attak(Player opponen){
+int senjata = this.maxAttak();
+System.out.println(this.nama + " Menyerang : " + opponen.getName() + " With " + senjata);
+opponen.defance(senjata);
+
+}
+
+public void defance(int senjata){
+    
+int armor2 = this.armor.getArmor();
+    System.out.println("yg di suruh print : " + armor2);
+int demage;
+    System.out.println(this.nama + " Defance power : " + armor2);
+    if (senjata > armor2) {
+        demage = senjata - armor2;
+    }else{
+        demage = 0;
+    }
+    
+    System.out.println("Demage yang di peroleh : " + demage);
+    this.totaldemage += demage;
+    
+}
+
+public int maxHealth(){
+return this.baseHealth + this.level*incremenHealth + this.armor.streng();
+}
+
+public int maxAttak(){
+return this.baseAttak + this.level*this.incremenAttak + this.weapon.attak();
+}
+
+}
+
+class Armor{
+private String nama;
+private int streng;
+private int health;
+
+public Armor(String nama , int streng , int health){
+this.nama = nama;
+this.streng = streng;
+this.health = health;
+}
+
+public int streng(){
+return this.streng*10 + this.health;
+}
+
+public int getArmor(){
+return this.streng*2;
+}
+
+}
+
+class Weapon{
+private String nama;
+private int attak;
+
+public Weapon(String nama , int attak){
+this.nama = nama;
+this.attak = attak;
+}
+
+public int attak(){
+return this.attak;
+}
+
+}
+
+
+public class SpceX {
+    
+    public static void main(String[] args){
+        
+     Player player1 = new Player("Surahman");
+     Armor baja = new Armor("Baju baja", 5 , 100);
+     Weapon pedang = new Weapon("Pedang",10);
+     
+     player1.setWeapon(pedang);
+     player1.setArmor(baja);
+     player1.display();
+     
+     Player player2 = new Player("Surahman");
+     Armor baja2 = new Armor("Baju baja", 5 , 100);
+     Weapon pedang2 = new Weapon("Pedang",10);
+     
+     player1.setWeapon(pedang2);
+     player1.setArmor(baja2);
+     player1.display();
+     
+     player1.attak(player2);
+     
+     
+     
+    }
+    
+}
